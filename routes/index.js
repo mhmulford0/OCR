@@ -4,10 +4,16 @@ const fetch = require('node-fetch');
 var FormData = require('form-data');
 
 // ** TODO pass data back to the form
+let clientRes = [];
 
-/* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  if (clientRes.length >= 1) {
+    console.log(clientRes);
+
+    res.render('index', { clientRes });
+  } else {
+    res.render('index', {});
+  }
 });
 
 router.post('/', async function (req, res, next) {
@@ -27,14 +33,16 @@ router.post('/', async function (req, res, next) {
     redirect: 'follow',
   };
 
-  const extractedText = await fetch(
+  const parseResponse = await fetch(
     'https://api.ocr.space/parse/image',
     requestOptions
   )
     .then((response) => response.json())
     .then((result) => {
-      console.log(result.ParsedResults[0].ParsedText);
+      return result.ParsedResults[0].ParsedText;
     })
     .catch((error) => console.log('error', error));
+  clientRes.splice(0, 1, parseResponse);
+  res.redirect('/');
 });
 module.exports = router;

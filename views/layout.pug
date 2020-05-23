@@ -2,7 +2,7 @@ doctype html
 head
   meta(charset='utf-8')
   meta(content='width=device-width, initial-scale=1.0' name='viewport')
-  title Bootslander Bootstrap Template - Index
+  title TXT Extractor
   meta(content='' name='descriptison')
   meta(content='' name='keywords')
   // Favicons
@@ -77,15 +77,16 @@ main#main
           p Text
           .col-lg-12.mt-5.mt-lg-0(data-aos='fade-left' data-aos-delay='200') 
             br
-            form.php-email-form(action='/' method='post' role='form')
+            form.php-email-form(action='/' method='post' role='form' id='extractForm')
               .form-row
               .form-group
                 label Image URL
                 input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktoimage.jpg' data-rule='minlen:4' data-msg='Please enter a valid url')
                 .validate
+  
               .form-group
                 label Extracted Text
-                textarea.form-control(name='extract' rows='5' readonly) sdjksjdvfhlksdlvnkls
+                textarea.form-control(name='extract' rows='5' readonly) #{clientRes}
                 .validate
               .mb-3
                 .loading Loading
@@ -116,3 +117,4 @@ script(src='assets/vendor/owl.carousel/owl.carousel.min.js')
 script(src='assets/vendor/aos/aos.js')
 // Template Main JS File
 script(src='assets/js/main.js')
+script(src='assets/js/app.js')
