@@ -43,6 +43,6 @@ router.post('/', async function (req, res, next) {
     })
     .catch((error) => console.log('error', error));
   clientRes.splice(0, 1, parseResponse);
-  res.redirect('/');
+  res.redirect('/#extract');
 });
 module.exports = router;
