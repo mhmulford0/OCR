@@ -8,15 +8,16 @@ let clientRes = [];
 
 router.get('/', function (req, res, next) {
   if (clientRes.length >= 1) {
-    console.log(clientRes);
+    const urlCookie = req.cookies.parseURL;
 
-    res.render('index', { clientRes });
+    res.render('index', { clientRes, urlCookie });
   } else {
     res.render('index', {});
   }
 });
 
 router.post('/', async function (req, res, next) {
+  res.cookie('parseURL', req.body.url, { expire: 360000 + Date.now() });
   var formdata = new FormData();
   formdata.append('language', 'eng');
   formdata.append('isOverlayRequired', 'false');

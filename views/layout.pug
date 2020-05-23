@@ -81,19 +81,23 @@ main#main
               .form-row
               .form-group
                 label Image URL
-                input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktoimage.jpg' data-rule='minlen:4' data-msg='Please enter a valid url')
-                .validate
-  
-              .form-group
-                label Extracted Text
-                textarea.form-control(name='extract' rows='5' readonly) #{clientRes}
-                .validate
+                input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktoimage.jpg' data-rule='minlen:4' data-msg='Please enter a valid url' value=`${urlCookie}`)
+
+              .validate
+            if clientRes
+              if clientRes.length >= 1
+                .form-group
+                  label Extracted Text
+                  textarea.form-control(name='extract' rows='5' readonly) #{clientRes}
+                  .validate
               .mb-3
                 .loading Loading
                 .error-message
                 .sent-message Extracting, Please wait
               .text-center
                 button(type='submit') Process Image
+
+            // TODO FIX BUTTON VISABILITY
   // End Contact Section
 // End #main
 // ======= Footer =======
