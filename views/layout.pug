@@ -70,32 +70,28 @@ main#main
   
   // ======= Contact Section =======
   #extract
-    section#contact.contact
+    section#contact.contact.mx-auto
       .container
         .section-title(data-aos='fade-up')
-          h2 Extract
-          p Text
-          .col-lg-12.mt-5.mt-lg-0(data-aos='fade-left' data-aos-delay='200') 
+          
+          .col-lg-6.mt-5.mt-lg-0.mx-auto(data-aos='fade-left' data-aos-delay='200') 
             br
             form.php-email-form(action='/' method='post' role='form' id='extractForm')
               .form-row
               .form-group
                 label Image URL
-                input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktoimage.jpg' data-rule='minlen:4' data-msg='Please enter a valid url' value=`${urlCookie}`)
-
-              .validate
+                input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktoimage.jpg' data-rule='minlen:4' data-msg='Please enter a valid url')
+                .alert.alert-danger(role='alert' id='error')
+              .text-center
+                button(type='submit') Process Image
+              
             if clientRes
               if clientRes.length >= 1
                 .form-group
                   label Extracted Text
-                  textarea.form-control(name='extract' rows='5' readonly) #{clientRes}
-                  .validate
-              .mb-3
-                .loading Loading
-                .error-message
-                .sent-message Extracting, Please wait
-              .text-center
-                button(type='submit') Process Image
+                  textarea.form-control(name='extract' rows='9' readonly) #{clientRes}
+ 
+
 
             // TODO FIX BUTTON VISABILITY
   // End Contact Section
@@ -122,3 +118,4 @@ script(src='assets/vendor/aos/aos.js')
 // Template Main JS File
 script(src='assets/js/main.js')
 script(src='assets/js/app.js')
+script(type='text/javascript' src='assets/js/validator.min.js')
