@@ -39,11 +39,16 @@ router.post('/', async function (req, res, next) {
     requestOptions
   )
     .then((response) => response.json())
-    .then((result) => {
-      return result.ParsedResults[0].ParsedText;
-    })
-    .catch((error) => console.log('error', error));
-  clientRes.splice(0, 1, parseResponse);
-  res.redirect('/#extract');
+    .catch(error => console.log('error', error));
+
+  console.log(parseResponse.IsErroredOnProcessing);
+  if (parseResponse.IsErroredOnProcessing == false) {
+    clientRes.splice(0, 1, parseResponse.ParsedResults[0].ParsedText);
+    res.redirect('/#extract');
+  }
+  else {
+    clientRes.splice(0, 1, `ERR: ${parseResponse.ErrorMessage}`)
+    res.redirect('/#extract');
+  }
 });
 module.exports = router;
