@@ -80,7 +80,11 @@ main#main
               .form-row
               #urlInfo.form-group
                 label PDF or Image URL
-                input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktofile' data-rule='minlen:4' data-msg='Please enter a valid url')
+                
+                input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktofile')
+                label.text-muted
+                   small
+                    File Size Limit: 1MB
               .text-center
                 button(type='submit') Process Request
               
@@ -88,7 +92,7 @@ main#main
               if clientRes.length >= 1
                 .form-group
                   label Extracted Text
-                  textarea.form-control(name='extract' rows='9' readonly) #{clientRes}
+                  textarea.form-control(name='extract' rows='8' readonly) #{clientRes}
 
   // End Contact Section
 // End #main

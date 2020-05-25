@@ -3,21 +3,19 @@ var router = express.Router();
 const fetch = require('node-fetch');
 var FormData = require('form-data');
 
-// ** TODO pass data back to the form
 let clientRes = [];
 
 router.get('/', function (req, res, next) {
   if (clientRes.length >= 1) {
-    const urlCookie = req.cookies.parseURL;
-
-    res.render('index', { clientRes, urlCookie });
+    res.render('index', { clientRes })
   } else {
+    clientRes = [];
     res.render('index', {});
   }
 });
 
 router.post('/', async function (req, res, next) {
-  res.cookie('parseURL', req.body.url, { expire: 360000 + Date.now() });
+  //res.cookie('parseURL', req.body.url, { expire: 360000 + Date.now() });
   var formdata = new FormData();
   formdata.append('language', 'eng');
   formdata.append('isOverlayRequired', 'false');
@@ -41,7 +39,6 @@ router.post('/', async function (req, res, next) {
     .then((response) => response.json())
     .catch(error => console.log('error', error));
 
-  console.log(parseResponse.IsErroredOnProcessing);
   if (parseResponse.IsErroredOnProcessing == false) {
     clientRes.splice(0, 1, parseResponse.ParsedResults[0].ParsedText);
     res.redirect('/#extract');

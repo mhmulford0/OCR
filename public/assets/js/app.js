@@ -1,7 +1,7 @@
 const form = document.getElementById('extractForm');
 const regex = /^(https?):\/\/[^\s$.?#].[^\s]*$/gm;
 let counter = 0;
-const limit = 1
+const limit = 1;
 
 form.addEventListener('submit', (event) => {
   if (!regex.test(document.getElementById('subject').value)) {
