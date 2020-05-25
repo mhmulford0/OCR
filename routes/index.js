@@ -47,7 +47,7 @@ router.post('/', async function (req, res, next) {
     res.redirect('/#extract');
   }
   else {
-    clientRes.splice(0, 1, `ERR: ${parseResponse.ErrorMessage}`)
+    clientRes.splice(0, 1, `Error: ${parseResponse.ErrorMessage}`)
     res.redirect('/#extract');
   }
 });
