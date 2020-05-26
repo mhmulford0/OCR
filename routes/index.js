@@ -3,11 +3,11 @@ var router = express.Router();
 const fetch = require('node-fetch');
 var FormData = require('form-data');
 
-let clientRes = [];
+clientRes = [];
 
 router.get('/', function (req, res, next) {
   if (clientRes.length >= 1) {
-    res.render('index', { clientRes })
+    res.render('index', { clientRes });
   } else {
     clientRes = [];
     res.render('index', {});
@@ -16,14 +16,14 @@ router.get('/', function (req, res, next) {
 
 router.post('/', async function (req, res, next) {
   //res.cookie('parseURL', req.body.url, { expire: 360000 + Date.now() });
-  var formdata = new FormData();
+  let formdata = new FormData();
   formdata.append('language', 'eng');
   formdata.append('isOverlayRequired', 'false');
   formdata.append('url', req.body.url);
   formdata.append('iscreatesearchablepdf', 'false');
   formdata.append('issearchablepdfhidetextlayer', 'false');
 
-  var requestOptions = {
+  let requestOptions = {
     headers: {
       apikey: process.env.API_KEY,
     },
@@ -37,14 +37,13 @@ router.post('/', async function (req, res, next) {
     requestOptions
   )
     .then((response) => response.json())
-    .catch(error => console.log('error', error));
+    .catch((error) => console.log('error', error));
 
   if (parseResponse.IsErroredOnProcessing == false) {
     clientRes.splice(0, 1, parseResponse.ParsedResults[0].ParsedText);
     res.redirect('/#extract');
-  }
-  else {
-    clientRes.splice(0, 1, `Error: ${parseResponse.ErrorMessage}`)
+  } else {
+    clientRes.splice(0, 1, `Error: ${parseResponse.ErrorMessage}`);
     res.redirect('/#extract');
   }
 });
