@@ -7,7 +7,6 @@ form.addEventListener('submit', (event) => {
   if (!regex.test(document.getElementById('subject').value)) {
     event.preventDefault();
 
-
     if (counter < limit) {
       const div = document.createElement('div');
       div.id = 'container';
@@ -17,4 +16,9 @@ form.addEventListener('submit', (event) => {
       counter += 1;
     }
   }
+});
+
+$('input[type="file"]').change(function (e) {
+  var fileName = e.target.files[0].name;
+  $('.custom-file-label').text(fileName);
 });

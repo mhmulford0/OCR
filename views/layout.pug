@@ -79,24 +79,23 @@ main#main
             form.php-email-form(action='/' method='post' role='form' id='extractForm')
               .form-row
               #urlInfo.form-group
-                label PDF or Image URL
-                .input-group.mb-3
-                  .input-group-prepend
-                    span#basic-addon1.input-group-text URL
-                  input.form-control(type='text' name='url' placeholder='http://www.yourlinktofile')
-                  .input-group-btn
-                    button#b1.btn.btn-success(type='submit') Button Label
+                label Link to image or PDF
+                input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktofile')
                 label.text-muted
                    small
                     File Size Limit: 1MB
               .text-center
+                button(type='submit') Process Request
+              .text-center
                 
             form#uploadForm(ref='uploadForm', action='/upload', method='post', enctype='multipart/form-data')
-              .input-group.mb-3
-                .input-group-prepend
-                  span#basic-addon1.input-group-text FILE
-                input.form-control(type='file', name='parseFile')
-                button(type="submit") Upload
+              .input-group
+                .custom-file
+                  input#inputGroupFile04.custom-file-input(type='file', aria-describedby='inputGroupFileAddon04')
+                  label.custom-file-label(for='inputGroupFile04') Choose file
+                .input-group-append
+                  button#inputGroupFileAddon04.btn.btn-outline-secondary(type='Submit') Button
+
 
 
             if clientRes
