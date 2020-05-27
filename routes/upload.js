@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const fileUpload = require('express-fileupload');
 const app = express();
+
+const fileUpload = require('express-fileupload');
 const fetch = require('node-fetch');
 var FormData = require('form-data');
 
@@ -10,9 +11,8 @@ router.post('/', async function (req, res) {
     return res.status(400).send('No files were uploaded.');
   }
 
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let parseFile = req.files.parseFile;
-  // Use the mv() method to place the file somewhere on your server
+
   parseFile.mv(`/mnt/c/code/OCR/public/parseimage/${parseFile.name}`, function (
     err
   ) {
