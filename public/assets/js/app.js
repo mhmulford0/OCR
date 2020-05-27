@@ -3,6 +3,10 @@ const regex = /^(https?):\/\/[^\s$.?#].[^\s]*$/gm;
 let counter = 0;
 const limit = 1;
 
+$(document).ready(function () {
+  bsCustomFileInput.init();
+});
+
 form.addEventListener('submit', (event) => {
   if (!regex.test(document.getElementById('subject').value)) {
     event.preventDefault();
@@ -16,9 +20,4 @@ form.addEventListener('submit', (event) => {
       counter += 1;
     }
   }
-});
-
-$('input[type="file"]').change(function (e) {
-  var fileName = e.target.files[0].name;
-  $('.custom-file-label').text(fileName);
 });

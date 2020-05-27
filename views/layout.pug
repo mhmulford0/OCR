@@ -77,26 +77,23 @@ main#main
           .col-lg-6.mt-5.mt-lg-0.mx-auto(data-aos='fade-left' data-aos-delay='200') 
             br
             form.php-email-form(action='/' method='post' role='form' id='extractForm')
-              .form-row
               #urlInfo.form-group
                 label Link to image or PDF
+              .input-group.mb-3
                 input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktofile')
-                label.text-muted
-                   small
-                    File Size Limit: 1MB
-              .text-center
-                button(type='submit') Process Request
-              .text-center
-                
-            form#uploadForm(ref='uploadForm', action='/upload', method='post', enctype='multipart/form-data')
-              .input-group
-                .custom-file
-                  input#inputGroupFile04.custom-file-input(type='file', aria-describedby='inputGroupFileAddon04')
-                  label.custom-file-label(for='inputGroupFile04') Choose file
                 .input-group-append
-                  button#inputGroupFileAddon04.btn.btn-outline-secondary(type='Submit') Button
-
-
+                  button.btn.btn-primary(type='submit') Submit
+            br
+            h3 OR
+            br
+            form#uploadForm(ref='uploadForm', action='/upload', method='post', enctype='multipart/form-data')
+              .input-group.mb-3
+                .custom-file
+                  input#inputGroupFile02.custom-file-input(type='file' name='parseFile')
+                  label.custom-file-label(for='inputGroupFile02', aria-describedby='inputGroupFileAddon02') Choose file
+                .input-group-append
+                  button#inputGroupFileAddon04.btn.btn-outline-secondary(type='submit') Button
+            br
 
             if clientRes
               if clientRes.length >= 1
@@ -129,4 +126,4 @@ script(src='assets/vendor/aos/aos.js')
 // Template Main JS File
 script(src='assets/js/main.js')
 script(src='assets/js/app.js')
-script(type='text/javascript' src='assets/js/validator.min.js')
+script(type='text/javascript' src='https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js')
