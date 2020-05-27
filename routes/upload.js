@@ -12,7 +12,6 @@ router.post('/', async function (req, res) {
 
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let parseFile = req.files.parseFile;
-
   // Use the mv() method to place the file somewhere on your server
   parseFile.mv(`/mnt/c/code/OCR/public/parseimage/${parseFile.name}`, function (
     err
@@ -28,7 +27,7 @@ router.post('/', async function (req, res) {
   let formdata = new FormData();
   formdata.append('language', 'eng');
   formdata.append('isOverlayRequired', 'false');
-  formdata.append('base64Image', `data:image/png;base64,${img64}`);
+  formdata.append('base64Image', `data:${parseFile.mimetype};base64,${img64}`);
   formdata.append('iscreatesearchablepdf', 'false');
   formdata.append('issearchablepdfhidetextlayer', 'false');
 
