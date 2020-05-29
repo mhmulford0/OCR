@@ -27,9 +27,9 @@ router.post('/', async function (req, res) {
   );
 
   const compressedImg = await imagemin(
-    [`/home/mhmulford/code/OCR/public/parseimage/${parseFile.name}`],
+    [`${process.env.IMG_LOCATION}parseimage/${parseFile.name}`],
     {
-      destination: '/home/mhmulford/code/OCR/public/images',
+      destination: `${process.env.IMG_LOCATION}images`,
       plugins: [
         imageminMozjpeg({ quality: 45 }),
         imageminPngquant({ speed: 11, quality: [0.2, 0.3] }),
