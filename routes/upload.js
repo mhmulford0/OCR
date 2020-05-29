@@ -4,10 +4,12 @@ const app = express();
 
 const fileUpload = require('express-fileupload');
 const fetch = require('node-fetch');
-var FormData = require('form-data');
 const imagemin = require('imagemin');
 const imageminJpegtran = require('imagemin-jpegtran');
 const imageminPngquant = require('imagemin-pngquant');
+
+var FormData = require('form-data');
+
 app.use(fileUpload());
 
 router.post('/', async function (req, res) {
@@ -21,13 +23,8 @@ router.post('/', async function (req, res) {
     `/home/mhmulford/code/OCR/public/parseimage/${parseFile.name}`,
     function (err) {
       if (err) return res.status(500).send(err);
-      //res.send('File uploaded!');
     }
   );
-
-  // const buf = Buffer.from(parseFile.data, 'utf8');
-  // const img64 = buf.toString('base64');
-  // console.log(img64);
 
   const compressedImg = await imagemin(
     [`/home/mhmulford/code/OCR/public/parseimage/${parseFile.name}`],
