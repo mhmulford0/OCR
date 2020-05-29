@@ -20,7 +20,7 @@ router.post('/', async function (req, res) {
   let parseFile = req.files.parseFile;
 
   parseFile.mv(
-    `/home/mhmulford/code/OCR/public/parseimage/${parseFile.name}`,
+    `${process.env.IMG_LOCATION}parseimage/${parseFile.name}`,
     function (err) {
       if (err) return res.status(500).send(err);
     }
