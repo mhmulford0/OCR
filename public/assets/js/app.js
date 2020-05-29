@@ -1,4 +1,5 @@
-const form = document.getElementById('extractForm');
+const urlForm = document.getElementById('extractForm');
+const fileForm = document.getElementById('uploadForm');
 const regex = /^(https?):\/\/[^\s$.?#].[^\s]*$/gm;
 let counter = 0;
 const limit = 1;
@@ -7,7 +8,7 @@ $(document).ready(function () {
   bsCustomFileInput.init();
 });
 
-form.addEventListener('submit', (event) => {
+urlForm.addEventListener('submit', (event) => {
   if (!regex.test(document.getElementById('subject').value)) {
     event.preventDefault();
 
@@ -19,5 +20,15 @@ form.addEventListener('submit', (event) => {
       document.getElementById('urlInfo').append(div);
       counter += 1;
     }
+  } else {
+    document.getElementById('urlButton').innerHTML =
+      'Loading <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+    document.getElementById('urlButton').disabled = true;
   }
+});
+
+fileForm.addEventListener('submit', (event) => {
+  document.getElementById('inputGroupFileAddon04').innerHTML =
+    'Processing <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+  document.getElementById('inputGroupFileAddon04').disabled = true;
 });

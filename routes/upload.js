@@ -35,7 +35,7 @@ router.post('/', async function (req, res) {
         imageminPngquant({ speed: 11, quality: [0.2, 0.3] }),
       ],
     }
-  );
+  ).catch(console.log('There was an error with compression'));
   const compressedBuf = Buffer.from(compressedImg[0].data, 'utf8');
   const compressedImg64 = compressedBuf.toString('base64');
 
