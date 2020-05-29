@@ -5,7 +5,7 @@ const app = express();
 const fileUpload = require('express-fileupload');
 const fetch = require('node-fetch');
 const imagemin = require('imagemin');
-const imageminJpegtran = require('imagemin-jpegtran');
+const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
 
 var FormData = require('form-data');
@@ -31,10 +31,8 @@ router.post('/', async function (req, res) {
     {
       destination: '/home/mhmulford/code/OCR/public/images',
       plugins: [
-        imageminJpegtran({ progressive: true }),
-        imageminPngquant({
-          quality: [0.4, 0.4],
-        }),
+        imageminMozjpeg({ quality: 45 }),
+        imageminPngquant({ speed: 11, quality: [0.2, 0.3] }),
       ],
     }
   );
