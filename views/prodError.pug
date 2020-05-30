@@ -1,13 +1,18 @@
-// accent #48B47A
-
 doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
     title Error
-      
-  body#home(style='background-color:#240EA2')
-    h1 Not Found
-    p
-      | Go Back 
-      a(href='/') Back
+    link(href='assets/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+  body
+    .container
+      .row
+        .col-md-12
+          .error-template
+            h1 Oops!
+            h2 404 Not Found
+            .error-details Sorry, an error has occured, Requested page not found!
+            .error-actions
+              a.btn.btn-primary.btn-lg(href='/')
+                span.glyphicon.glyphicon-home
+                | Take Me Home
