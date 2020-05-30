@@ -1,49 +1,6 @@
-doctype html
-head
-  meta(charset='utf-8')
-  meta(content='width=device-width, initial-scale=1.0' name='viewport')
-  title TXT Extractor
-  meta(content='' name='descriptison')
-  meta(content='' name='keywords')
-  // Favicons
-  link(href='assets/img/favicon.png' rel='icon')
-  link(href='assets/img/apple-touch-icon.png' rel='apple-touch-icon')
-  // Google Fonts
-  link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' rel='stylesheet')
-  // Vendor CSS Files
-  link(href='assets/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
-  link(href='assets/vendor/icofont/icofont.min.css' rel='stylesheet')
-  link(href='assets/vendor/boxicons/css/boxicons.min.css' rel='stylesheet')
-  link(href='assets/vendor/venobox/venobox.css' rel='stylesheet')
-  link(href='assets/vendor/remixicon/remixicon.css' rel='stylesheet')
-  link(href='assets/vendor/owl.carousel/assets/owl.carousel.min.css' rel='stylesheet')
-  link(href='assets/vendor/aos/aos.css' rel='stylesheet')
-  // Template Main CSS File
-  link(href='assets/css/style.css' rel='stylesheet')
-  //
-    =======================================================
-    * Template Name: Bootslander - v2.1.0
-    * Template URL: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ========================================================
-// ======= Header =======
-header#header.fixed-top.d-flex.align-items-center
-  .container.d-flex.align-items-center
-    .logo.mr-auto
-      h1.text-light
-        a(href='index.html')
-          span TXT Extractor
-
-    nav.nav-menu.d-none.d-lg-block
-      ul
-        li.active
-          a(href='#header') Home
-        li
-          a(href='#extract') Extract
-// End Header
+include header.pug
 // ======= Hero Section =======
-block content
+
 section#hero
   .container
     .row
@@ -66,48 +23,9 @@ section#hero
     g.wave3
       use(xlink:href='#wave-path' x='50' y='9' fill='#fff')
 // End Hero
-main#main
-  
-  // ======= Contact Section =======
-  #extract
-    section#contact.contact.mx-auto
-      .container
-        .section-title(data-aos='fade-up')
-          
-          .col-lg-6.mt-5.mt-lg-0.mx-auto(data-aos='fade-left' data-aos-delay='200') 
-            br
-            form.php-email-form(action='/' method='post' role='form' id='extractForm')
-              #urlInfo.form-group
-                label Link to image or PDF
-              .input-group.mb-3
-                input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktofile')
-                .input-group-append
-                  button#urlButton.btn.btn-primary(type='submit') Submit
-                  
-              small 1MB File Limit
-            br
-            h3 OR
-            br
-            form#uploadForm(ref='uploadForm', action='/upload', method='post', enctype='multipart/form-data')
-              .input-group.mb-3
-                .custom-file
-                  input#inputGroupFile02.custom-file-input(type='file' name='parseFile' required accept='image/jpeg, image/jpg, image/png')
-                  label.custom-file-label(for='inputGroupFile02', aria-describedby='inputGroupFileAddon02') Choose file
-                .input-group-append
-                  button#inputGroupFileAddon04.btn.btn-success(type='submit') Process
-              small Accepted Files: jpg, jpeg, png
-                  
-            br
 
-            if clientRes
-              if clientRes.length >= 1
-                .form-group
-                  label Extracted Text
-                  textarea.form-control(name='extract' rows='8' readonly) #{clientRes}
+block content
 
-
-  // End Contact Section
-// End #main
 // ======= Footer =======
 footer#footer
   .footer-top

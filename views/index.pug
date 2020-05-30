@@ -1,3 +1,42 @@
 extends layout
 
+block content
+  main#main
+    
+    #extract
+      section#contact.contact.mx-auto
+        .container
+          .section-title(data-aos='fade-up')
+            
+            .col-lg-6.mt-5.mt-lg-0.mx-auto(data-aos='fade-left' data-aos-delay='200') 
+              br
+              form.php-email-form(action='/' method='post' role='form' id='extractForm')
+                #urlInfo.form-group
+                  label Link to image or PDF
+                .input-group.mb-3
+                  input#subject.form-control(type='text' name='url' placeholder='http://www.yourlinktofile')
+                  .input-group-append
+                    button#urlButton.btn.btn-primary(type='submit') Submit
+                    
+                small 1MB File Limit
+              br
+              h3 OR
+              br
+              form#uploadForm(ref='uploadForm', action='/upload', method='post', enctype='multipart/form-data')
+                .input-group.mb-3
+                  .custom-file
+                    input#inputGroupFile02.custom-file-input(type='file' name='parseFile' required accept='image/jpeg, image/jpg, image/png')
+                    label.custom-file-label(for='inputGroupFile02', aria-describedby='inputGroupFileAddon02') Choose file
+                  .input-group-append
+                    button#inputGroupFileAddon04.btn.btn-success(type='submit') Process
+                small Accepted Files: jpg, jpeg, png
+                    
+              br
+
+              if clientRes
+                if clientRes.length >= 1
+                  .form-group
+                    label Extracted Text
+                    textarea.form-control(name='extract' rows='8' readonly) #{clientRes}
+
 
