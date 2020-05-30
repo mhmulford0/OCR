@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 const fileUpload = require('express-fileupload');
+var cookieSession = require('cookie-session');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
@@ -26,6 +27,16 @@ app.use(
     limits: { fileSize: 2000000 },
     abortOnLimit: true,
     responseOnLimit: 'File Size Limit Exceeded',
+  })
+);
+
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: ['61645bf4ce5931'],
+
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
   })
 );
 
