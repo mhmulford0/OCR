@@ -34,7 +34,7 @@ app.use(
   cookieSession({
     name: 'session',
     keys: ['61645bf4ce5931'],
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: 60000,
   })
 );
 

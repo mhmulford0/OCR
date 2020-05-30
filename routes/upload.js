@@ -35,7 +35,7 @@ router.post('/', async function (req, res) {
         imageminPngquant({ speed: 11, quality: [0.2, 0.3] }),
       ],
     }
-  ).catch(console.log('There was an error with compression'));
+  ).catch();
   const compressedBuf = Buffer.from(compressedImg[0].data, 'utf8');
   const compressedImg64 = compressedBuf.toString('base64');
 
@@ -66,10 +66,10 @@ router.post('/', async function (req, res) {
     .catch((error) => console.log('error', error));
 
   if (parseResponse.IsErroredOnProcessing == false) {
-    clientRes.splice(0, 1, parseResponse.ParsedResults[0].ParsedText);
+    req.session.apiResponse = parseResponse.ParsedResults[0].ParsedText;
     res.redirect('/#extract');
   } else {
-    clientRes.splice(0, 1, `Error: ${parseResponse.ErrorMessage}`);
+    req.session.apiResponse = `Error: ${parseResponse.ErrorMessage}`;
     res.redirect('/#extract');
   }
 });

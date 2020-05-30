@@ -3,13 +3,13 @@ var router = express.Router();
 const fetch = require('node-fetch');
 var FormData = require('form-data');
 
-clientRes = [];
+let clientRes;
 
 router.get('/', function (req, res, next) {
-  if (clientRes.length >= 1) {
+  if (req.session.apiResponse) {
+    clientRes = req.session.apiResponse;
     res.render('index', { clientRes });
   } else {
-    clientRes = [];
     res.render('index', {});
   }
 });
@@ -40,10 +40,10 @@ router.post('/', async function (req, res, next) {
     .catch((error) => console.log('error', error));
 
   if (parseResponse.IsErroredOnProcessing == false) {
-    clientRes.splice(0, 1, parseResponse.ParsedResults[0].ParsedText);
+    req.session.apiResponse = parseResponse.ParsedResults[0].ParsedText;
     res.redirect('/#extract');
   } else {
-    clientRes.splice(0, 1, `Error: ${parseResponse.ErrorMessage}`);
+    req.session.apiResponse = `Error: ${parseResponse.ErrorMessage}`;
     res.redirect('/#extract');
   }
 });
