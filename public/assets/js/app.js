@@ -39,7 +39,6 @@ fileForm.addEventListener('submit', (event) => {
     document.getElementById('inputGroupFileAddon04').innerHTML =
       'Processing <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
     document.getElementById('inputGroupFileAddon04').disabled = true;
-    console.log();
   } else {
     event.preventDefault();
     if (fileCounter < fileLimit) {
@@ -48,7 +47,7 @@ fileForm.addEventListener('submit', (event) => {
       div.innerHTML = 'Please Choose a different file!';
       div.className = 'alert alert-danger';
       document.getElementById('uploadForm').append(div);
-      Filecounter += 1;
+      fileCounter += 1;
     }
   }
 });
