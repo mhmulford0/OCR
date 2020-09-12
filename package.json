@@ -23,7 +23,7 @@
     "imagemin-optipng": "^8.0.0",
     "imagemin-pngquant": "^8.0.0",
     "morgan": "~1.9.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "pug": "^2.0.4"
   },
   "devDependencies": {
